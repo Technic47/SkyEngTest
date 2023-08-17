@@ -2,6 +2,7 @@ package com.testcase.skyeng.controllers;
 
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.services.CommonInterface;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +16,13 @@ public abstract class CommonController<T extends CommonEntity,
     }
 
 
-    @GetMapping("/")
+    @GetMapping()
     public List<T> index() {
         return service.index();
     }
 
-    @PostMapping("/")
-    public T newItem(T item) {
+    @PostMapping()
+    public T newItem(@RequestBody T item) {
         return service.saveItem(item);
     }
 
@@ -32,7 +33,7 @@ public abstract class CommonController<T extends CommonEntity,
     }
 
     @PutMapping("/{id}")
-    public T updateItem(@PathVariable Long id, T item) {
+    public T updateItem(@PathVariable Long id, @RequestBody T item) {
         return service.updateItem(id, item);
     }
 

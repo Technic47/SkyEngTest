@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/mailpackages")
 public class MailPackageController extends CommonController<MailPackage, MailPackageService> {
+    private final MailPackageService service;
     protected MailPackageController(MailPackageService service) {
         super(service);
+        this.service = service;
     }
+
+
 }

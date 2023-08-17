@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,15 +23,18 @@ public class Address extends CommonEntity {
     @NotBlank(message = "Поле не должно быть пустым!")
     @Size(min = 1, max = 150)
     private String addressLine1;
-    @NotBlank(message = "Поле не должно быть пустым!")
     @Size(min = 1, max = 150)
     private String addressLine2;
-    @NotBlank(message = "Поле не должно быть пустым!")
     private int index;
-    @OneToMany
-    private Set<Person> persons;
-    @OneToMany
-    private Set<Person> postOffices;
+//    @OneToMany
+//    private Set<Person> persons;
+//    @OneToMany
+//    private Set<Person> postOffices;
+
+    public Address() {
+//        persons = new HashSet<>();
+//        postOffices = new HashSet<>();
+    }
 
     @Override
     public <T> void copy(T item) {
@@ -40,8 +44,8 @@ public class Address extends CommonEntity {
         this.addressLine1 = newItem.addressLine1;
         this.addressLine2 = newItem.getAddressLine2();
         this.index = newItem.getIndex();
-        this.persons = newItem.getPersons();
-        this.postOffices = newItem.getPostOffices();
+//        this.persons = newItem.getPersons();
+//        this.postOffices = newItem.getPostOffices();
     }
 
     public Long getId() {
@@ -92,33 +96,32 @@ public class Address extends CommonEntity {
         this.index = index;
     }
 
-    public Set<Person> getPersons() {
-        return persons;
-    }
+//    public Set<Person> getPersons() {
+//        return persons;
+//    }
 
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
-    }
+//    public void setPersons(Set<Person> persons) {
+//        this.persons = persons;
+//    }
 
-    public Set<Person> getPostOffices() {
-        return postOffices;
-    }
+//    public Set<Person> getPostOffices() {
+//        return postOffices;
+//    }
 
-    public void setPostOffices(Set<Person> postOffices) {
-        this.postOffices = postOffices;
-    }
+//    public void setPostOffices(Set<Person> postOffices) {
+//        this.postOffices = postOffices;
+//    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Address)) return false;
-        Address address = (Address) o;
-        return index == address.index && Objects.equals(id, address.id) && Objects.equals(country, address.country) && Objects.equals(city, address.city) && Objects.equals(addressLine1, address.addressLine1) && Objects.equals(addressLine2, address.addressLine2) && Objects.equals(persons, address.persons) && Objects.equals(postOffices, address.postOffices);
+        if (!(o instanceof Address address)) return false;
+        return index == address.index && Objects.equals(id, address.id) && Objects.equals(country, address.country) && Objects.equals(city, address.city) && Objects.equals(addressLine1, address.addressLine1) && Objects.equals(addressLine2, address.addressLine2);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, country, city, addressLine1, addressLine2, index, persons, postOffices);
+        return Objects.hash(id, country, city, addressLine1, addressLine2, index);
     }
 
     @Override

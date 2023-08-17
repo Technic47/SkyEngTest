@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,8 +23,12 @@ public class Person extends CommonEntity {
     @ManyToOne
     @JoinColumn(name = "adress_id")
     private Address address;
-    @ManyToMany
-    private Set<MailPackage> packages;
+//    @ManyToMany
+//    private Set<MailPackage> packages;
+
+    public Person() {
+//        packages = new HashSet<>();
+    }
 
     @Override
     public <T> void copy(T item) {
@@ -31,7 +36,7 @@ public class Person extends CommonEntity {
         this.firstName = newItem.getFirstName();
         this.secondName = newItem.getSecondName();
         this.address = newItem.getAddress();
-        this.packages = newItem.getPackages();
+//        this.packages = newItem.getPackages();
     }
 
     public Long getId() {
@@ -66,25 +71,24 @@ public class Person extends CommonEntity {
         this.address = address;
     }
 
-    public Set<MailPackage> getPackages() {
-        return packages;
-    }
+//    public Set<MailPackage> getPackages() {
+//        return packages;
+//    }
 
-    public void setPackages(Set<MailPackage> packages) {
-        this.packages = packages;
-    }
+//    public void setPackages(Set<MailPackage> packages) {
+//        this.packages = packages;
+//    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;
-        Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(secondName, person.secondName) && Objects.equals(address, person.address) && Objects.equals(packages, person.packages);
+        if (!(o instanceof Person person)) return false;
+        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(secondName, person.secondName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, secondName, address, packages);
+        return Objects.hash(id, firstName, secondName);
     }
 
     @Override
