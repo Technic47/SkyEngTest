@@ -1,5 +1,6 @@
 package com.testcase.skyeng.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.models.additions.PackageType;
 import jakarta.persistence.*;

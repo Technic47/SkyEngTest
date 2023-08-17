@@ -22,8 +22,8 @@ public abstract class CommonController<T extends CommonEntity,
     }
 
     @PostMapping()
-    public T newItem(@RequestBody T item) {
-        return service.saveItem(item);
+    public T newItem(@RequestBody T newItem) {
+        return service.saveItem(newItem);
     }
 
 

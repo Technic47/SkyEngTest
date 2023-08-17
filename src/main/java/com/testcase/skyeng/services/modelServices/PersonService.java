@@ -14,6 +14,16 @@ public class PersonService extends CommonService<Person, PersonRepository> {
         super(repository);
     }
 
+    public Person findByFirstAndSecondName(Person person){
+        Optional<Person> findPerson = repository.findByFirstNameAndSecondName(person.getFirstName(), person.getSecondName());
+        return findPerson.orElseGet(() -> saveItem(person));
+    }
+
+    public Person findByPassport(Person person){
+        Optional<Person> findPerson = repository.findByPassportNumber(person.getPassportNumber());
+        return findPerson.orElseGet(() -> saveItem(person));
+    }
+
     public Person addAddress(Long id, Address address) {
         Optional<Person> item = repository.findById(id);
         if (item.isPresent()) {

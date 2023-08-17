@@ -3,6 +3,7 @@ package com.testcase.skyeng.models;
 import com.testcase.skyeng.models.additions.CommonEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
@@ -14,6 +15,8 @@ public class Person extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    private Long passportNumber;
     @NotBlank(message = "Поле не должно быть пустым!")
     @Size(min = 1, max = 100)
     private String firstName;
@@ -45,6 +48,14 @@ public class Person extends CommonEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(Long passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
     public String getFirstName() {
