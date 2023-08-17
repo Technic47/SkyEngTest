@@ -7,18 +7,16 @@ import com.testcase.skyeng.services.modelServices.AddressService;
 import com.testcase.skyeng.services.modelServices.PersonService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/persons")
 public class PersonController extends CommonController<Person, PersonService> {
-    private final PersonService service;
     private final AddressService addressService;
+
     protected PersonController(PersonService service, AddressService addressService) {
         super(service);
-        this.service = service;
         this.addressService = addressService;
     }
+
 
     @PostMapping("/{personId}/addAddress/{addressId}")
     public Person addAddressById(@PathVariable Long personId,

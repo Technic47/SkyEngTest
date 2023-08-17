@@ -11,7 +11,7 @@
     <groupId>com.testcase</groupId>
     <artifactId>SkyEng</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>SkyEng</name>
     <description>SkyEng</description>
     <properties>

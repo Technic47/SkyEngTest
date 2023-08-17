@@ -14,6 +14,8 @@ public class MailPackage extends CommonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @JsonProperty(value = "type")
+    @Enumerated(EnumType.STRING)
     private PackageType type;
     private int receiverIndex;
     @ManyToOne

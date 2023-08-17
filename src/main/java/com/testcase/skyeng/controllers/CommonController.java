@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class CommonController<T extends CommonEntity,
         S extends CommonInterface<T>> {
-    private final S service;
+    protected final S service;
 
     protected CommonController(S service) {
         this.service = service;

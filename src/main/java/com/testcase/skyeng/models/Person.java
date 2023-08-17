@@ -26,11 +26,8 @@ public class Person extends CommonEntity {
     @ManyToOne
     @JoinColumn(name = "adress_id")
     private Address address;
-//    @ManyToMany
-//    private Set<MailPackage> packages;
 
     public Person() {
-//        packages = new HashSet<>();
     }
 
     @Override
@@ -82,14 +79,6 @@ public class Person extends CommonEntity {
         this.address = address;
     }
 
-//    public Set<MailPackage> getPackages() {
-//        return packages;
-//    }
-
-//    public void setPackages(Set<MailPackage> packages) {
-//        this.packages = packages;
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,6 +98,4 @@ public class Person extends CommonEntity {
                 ", secondName='" + secondName + '\'' +
                 '}';
     }
-
-
 }
