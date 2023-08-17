@@ -1,14 +1,14 @@
 package com.testcase.skyeng.models;
 
+import com.testcase.skyeng.models.additions.CommonEntity;
+import com.testcase.skyeng.models.additions.PackageType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-public class MailPackage {
+public class MailPackage extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,15 @@ public class MailPackage {
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     private Person receiver;
+
+    @Override
+    public <T> void copy(T item) {
+        MailPackage newItem = (MailPackage) item;
+        this.type = newItem.getType();
+        this.receiverIndex = newItem.receiverIndex;
+        this.receiverAddress = newItem.getReceiverAddress();
+        this.receiver = newItem.receiver;
+    }
 
     public MailPackage(){}
 

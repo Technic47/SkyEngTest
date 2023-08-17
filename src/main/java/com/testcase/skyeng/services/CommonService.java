@@ -1,20 +1,17 @@
 package com.testcase.skyeng.services;
 
-import com.testcase.skyeng.models.CommonEntity;
-import com.testcase.skyeng.models.CopyItem;
-import com.testcase.skyeng.models.Person;
+import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.repositories.CommonRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CommonService<T extends CommonEntity, R extends CommonRepository<T>> {
+public abstract class CommonService<T extends CommonEntity, R extends CommonRepository<T>> implements CommonInterface<T>{
     protected R repository;
 
     public CommonService(R repository) {
         this.repository = repository;
     }
-
 
     public List<T> index() {
         return repository.findAll();

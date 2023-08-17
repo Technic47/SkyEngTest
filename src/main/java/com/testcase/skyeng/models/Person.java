@@ -1,11 +1,10 @@
 package com.testcase.skyeng.models;
 
+import com.testcase.skyeng.models.additions.CommonEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.nio.file.CopyOption;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 

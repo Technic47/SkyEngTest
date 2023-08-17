@@ -1,5 +1,6 @@
 package com.testcase.skyeng.models;
 
+import com.testcase.skyeng.models.additions.CommonEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -7,7 +8,7 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class PostOffice {
+public class PostOffice extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +19,14 @@ public class PostOffice {
     @ManyToOne
     @JoinColumn(name = "adress_id")
     private Address address;
+
+    @Override
+    public <T> void copy(T item) {
+        PostOffice newItem = (PostOffice) item;
+        this.name = newItem.getName();
+        this.index = newItem.getIndex();
+        this.address = newItem.getAddress();
+    }
 
     public PostOffice() {
     }

@@ -1,4 +1,4 @@
-package com.testcase.skyeng.models;
+package com.testcase.skyeng.models.additions;
 
 public enum PackageType {
     MAIL, PACKAGE, PARCEL, POSTCARD

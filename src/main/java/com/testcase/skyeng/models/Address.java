@@ -1,5 +1,6 @@
 package com.testcase.skyeng.models;
 
+import com.testcase.skyeng.models.additions.CommonEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Address {
+public class Address extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +31,18 @@ public class Address {
     private Set<Person> persons;
     @OneToMany
     private Set<Person> postOffices;
+
+    @Override
+    public <T> void copy(T item) {
+        Address newItem = (Address) item;
+        this.country = newItem.getCountry();
+        this.city = newItem.getCity();
+        this.addressLine1 = newItem.addressLine1;
+        this.addressLine2 = newItem.getAddressLine2();
+        this.index = newItem.getIndex();
+        this.persons = newItem.getPersons();
+        this.postOffices = newItem.getPostOffices();
+    }
 
     public Long getId() {
         return id;
