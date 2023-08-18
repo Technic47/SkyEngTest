@@ -6,16 +6,19 @@ import com.testcase.skyeng.repositories.TrackRepository;
 import com.testcase.skyeng.services.CommonService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TrackService extends CommonService<Track, TrackRepository> {
     private final PostOfficeService postOfficeService;
+
     public TrackService(TrackRepository repository, PostOfficeService postOfficeService) {
         super(repository);
         this.postOfficeService = postOfficeService;
     }
 
 
-    public Track addOfficeFrom(Long track, Long from, Long office){
+    public Track addOfficeFrom(Long track, Long from, Long office) {
         Track trackToWork = this.getByIdOrNull(track);
         PostOffice officeFrom = postOfficeService.getByIdOrNull(from);
         PostOffice officeToAdd = postOfficeService.getByIdOrNull(office);
@@ -23,7 +26,19 @@ public class TrackService extends CommonService<Track, TrackRepository> {
         return repository.save(trackToWork);
     }
 
-    public boolean isArrived(Long track){
+    public Track addOfficeFrom(Long track, PostOffice from, PostOffice office) {
+        Track trackToWork = this.getByIdOrNull(track);
+        trackToWork.addPostOfficeAfter(from, office);
+        return repository.save(trackToWork);
+    }
+
+    public Track addOfficeFrom(Long track, PostOffice from, List<PostOffice> officeList) {
+        Track trackToWork = this.getByIdOrNull(track);
+        trackToWork.addPostOfficeAfter(from, officeList);
+        return repository.save(trackToWork);
+    }
+
+    public boolean isArrived(Long track) {
         Track trackToWork = this.getByIdOrNull(track);
         return trackToWork.isArrived();
     }

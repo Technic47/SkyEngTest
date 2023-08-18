@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//Track entity for storing data about path of package.
 @Entity
 public class Track extends CommonEntity {
     @Id
@@ -35,14 +36,11 @@ public class Track extends CommonEntity {
         //not implemented;
     }
 
-    public void addPostOfficeToPath(PostOffice postOffice) {
-        path.add(postOffice);
-    }
-
-    public void delPostOfficeFromPath(PostOffice postOffice) {
-        path.remove(postOffice);
-    }
-
+    /**
+     *
+     * @param from
+     * @param toAdd
+     */
     public void addPostOfficeAfter(PostOffice from, PostOffice toAdd) {
         int indexFrom = path.indexOf(from);
         path.add(indexFrom + 1, toAdd);
