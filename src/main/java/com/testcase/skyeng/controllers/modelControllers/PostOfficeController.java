@@ -22,7 +22,7 @@ public class PostOfficeController extends CommonController<PostOffice, PostOffic
     public PostOffice newItem(@RequestBody PostOffice newItem) {
         Address address = newItem.getAddress();
         if (address != null) {
-            Address findAddress = addressService.findByAllFields(address);
+            Address findAddress = addressService.checkExist(address);
             newItem.setAddress(findAddress);
         }
         return super.newItem(newItem);

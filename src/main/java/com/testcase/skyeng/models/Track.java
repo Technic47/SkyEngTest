@@ -37,24 +37,40 @@ public class Track extends CommonEntity {
     }
 
     /**
+     * Add single PostOffice to distinct position in path.
      *
-     * @param from
-     * @param toAdd
+     * @param from  position after which to add
+     * @param toAdd office to add
      */
     public void addPostOfficeAfter(PostOffice from, PostOffice toAdd) {
         int indexFrom = path.indexOf(from);
         path.add(indexFrom + 1, toAdd);
     }
 
+    /**
+     * Add list of PostOffices to distinct position in path.
+     *
+     * @param from  position after which to add
+     * @param toAdd list to add
+     */
+
     public void addPostOfficeAfter(PostOffice from, List<PostOffice> toAdd) {
         int indexFrom = path.indexOf(from);
         path.addAll(indexFrom + 1, toAdd);
     }
 
+    /**
+     * Get current position of package.
+     *
+     * @return PostOffice where package is now.
+     */
     public PostOffice getCurrentOffice() {
         return path.get(currentState);
     }
 
+    /**
+     * Move package to next step on the way.
+     */
     public void moveToNextStep() {
         int allSteps = path.size();
         currentState++;

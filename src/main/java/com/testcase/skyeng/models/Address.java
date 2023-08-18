@@ -26,14 +26,8 @@ public class Address extends CommonEntity {
     @Size(min = 1, max = 150)
     private String addressLine2;
     private int index;
-//    @OneToMany
-//    private Set<Person> persons;
-//    @OneToMany
-//    private Set<Person> postOffices;
 
     public Address() {
-//        persons = new HashSet<>();
-//        postOffices = new HashSet<>();
     }
 
     @Override
@@ -44,8 +38,6 @@ public class Address extends CommonEntity {
         this.addressLine1 = newItem.addressLine1;
         this.addressLine2 = newItem.getAddressLine2();
         this.index = newItem.getIndex();
-//        this.persons = newItem.getPersons();
-//        this.postOffices = newItem.getPostOffices();
     }
 
     public Long getId() {
@@ -95,22 +87,6 @@ public class Address extends CommonEntity {
     public void setIndex(int index) {
         this.index = index;
     }
-
-//    public Set<Person> getPersons() {
-//        return persons;
-//    }
-
-//    public void setPersons(Set<Person> persons) {
-//        this.persons = persons;
-//    }
-
-//    public Set<Person> getPostOffices() {
-//        return postOffices;
-//    }
-
-//    public void setPostOffices(Set<Person> postOffices) {
-//        this.postOffices = postOffices;
-//    }
 
     @Override
     public boolean equals(Object o) {

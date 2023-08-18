@@ -17,7 +17,43 @@ public class TrackService extends CommonService<Track, TrackRepository> {
         this.postOfficeService = postOfficeService;
     }
 
+    /**
+     * Add list of PostOffices to distinct position in track.
+     *
+     * @param track      id of track for adding offices
+     * @param from       PostOffice after which to add
+     * @param officeList list to add
+     * @return changed Track
+     */
+    public Track addOfficeFrom(Long track, PostOffice from, List<PostOffice> officeList) {
+        Track trackToWork = this.getByIdOrNull(track);
+        trackToWork.addPostOfficeAfter(from, officeList);
+        return repository.save(trackToWork);
+    }
 
+    /**
+     * Add PostOffice to distinct position in track.
+     *
+     * @param track  id of track for adding offices
+     * @param from   PostOffice after which to add
+     * @param office PostOffice to add
+     * @return changed Track
+     */
+    public Track addOfficeFrom(Long track, PostOffice from, PostOffice office) {
+        Track trackToWork = this.getByIdOrNull(track);
+        trackToWork.addPostOfficeAfter(from, office);
+        return repository.save(trackToWork);
+    }
+
+
+    /**
+     * Add PostOffice to distinct position in track.
+     *
+     * @param track  id of track for adding offices
+     * @param from   id of PostOffice after which to add
+     * @param office id of PostOffice to add
+     * @return changed Track
+     */
     public Track addOfficeFrom(Long track, Long from, Long office) {
         Track trackToWork = this.getByIdOrNull(track);
         PostOffice officeFrom = postOfficeService.getByIdOrNull(from);
@@ -26,18 +62,12 @@ public class TrackService extends CommonService<Track, TrackRepository> {
         return repository.save(trackToWork);
     }
 
-    public Track addOfficeFrom(Long track, PostOffice from, PostOffice office) {
-        Track trackToWork = this.getByIdOrNull(track);
-        trackToWork.addPostOfficeAfter(from, office);
-        return repository.save(trackToWork);
-    }
-
-    public Track addOfficeFrom(Long track, PostOffice from, List<PostOffice> officeList) {
-        Track trackToWork = this.getByIdOrNull(track);
-        trackToWork.addPostOfficeAfter(from, officeList);
-        return repository.save(trackToWork);
-    }
-
+    /**
+     * Check is Track finished and package arrived
+     *
+     * @param track id of track for adding offices
+     * @return arrive status
+     */
     public boolean isArrived(Long track) {
         Track trackToWork = this.getByIdOrNull(track);
         return trackToWork.isArrived();

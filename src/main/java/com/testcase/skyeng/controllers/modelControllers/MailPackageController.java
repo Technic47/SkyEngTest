@@ -28,13 +28,13 @@ public class MailPackageController extends CommonController<MailPackage, MailPac
     public MailPackage newItem(@RequestBody MailPackage newItem) {
         Address address = newItem.getReceiverAddress();
         if (address != null) {
-            Address findAddress = addressService.findByAllFields(address);
+            Address findAddress = addressService.checkExist(address);
             newItem.setReceiverAddress(findAddress);
         }
         Person receiver = newItem.getReceiver();
 
         if (receiver != null) {
-            Person findPerson = personService.findByPassport(receiver);
+            Person findPerson = personService.checkByPassport(receiver);
             newItem.setReceiver(findPerson);
         }
         newItem.setReceiverIndex(address.getIndex());

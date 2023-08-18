@@ -13,7 +13,13 @@ public class AddressService extends CommonService<Address, AddressRepository> {
         super(repository);
     }
 
-    public Address findByAllFields(Address address){
+    /**
+     * Check existence of Address in DB and save if not.
+     *
+     * @param address Address to check
+     * @return saved Address
+     */
+    public Address checkExist(Address address) {
         Optional<Address> findAddress = repository.findByCountryAndCityAndAddressLine1AndAddressLine2(
                 address.getCountry(), address.getCity(), address.getAddressLine1(), address.getAddressLine2()
         );

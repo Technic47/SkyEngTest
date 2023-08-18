@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
@@ -19,7 +18,6 @@ import javax.sql.DataSource;
 @ComponentScan("com.testcase.skyeng")
 @EnableJpaRepositories("com.testcase.skyeng.repositories")
 @EntityScan("com.testcase.skyeng.models")
-//@EnableMethodSecurity(securedEnabled = true)
 @EnableWebMvc
 public class SpringConfig {
     private static final Logger logger = LoggerFactory.getLogger(SkyEngApplication.class);
@@ -32,6 +30,7 @@ public class SpringConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+    //DB setUp
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

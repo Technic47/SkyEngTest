@@ -29,7 +29,7 @@ public class PersonController extends CommonController<Person, PersonService> {
     public Person newItem(@RequestBody Person newItem) {
         Address address = newItem.getAddress();
         if (address != null) {
-            Address findAddress = addressService.findByAllFields(address);
+            Address findAddress = addressService.checkExist(address);
             newItem.setAddress(findAddress);
         }
         return super.newItem(newItem);

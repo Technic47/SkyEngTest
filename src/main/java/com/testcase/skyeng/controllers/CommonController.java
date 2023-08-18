@@ -14,7 +14,6 @@ public abstract class CommonController<T extends CommonEntity,
         this.service = service;
     }
 
-
     @GetMapping()
     public List<T> index() {
         return service.index();

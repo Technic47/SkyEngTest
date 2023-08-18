@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Person extends CommonEntity {
@@ -18,10 +16,10 @@ public class Person extends CommonEntity {
     @NotNull
     private Long passportNumber;
     @NotBlank(message = "Поле не должно быть пустым!")
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 50)
     private String firstName;
     @NotBlank(message = "Поле не должно быть пустым!")
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 50)
     private String secondName;
     @ManyToOne
     @JoinColumn(name = "adress_id")
@@ -36,7 +34,6 @@ public class Person extends CommonEntity {
         this.firstName = newItem.getFirstName();
         this.secondName = newItem.getSecondName();
         this.address = newItem.getAddress();
-//        this.packages = newItem.getPackages();
     }
 
     public Long getId() {
