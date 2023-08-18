@@ -1,17 +1,6 @@
-FROM eclipse-temurin:19-jdk-alpine as builder
+FROM tomcat:latest
 MAINTAINER Pavel Kuznetsov
-WORKDIR /app
+EXPOSE 9090
+COPY target/SkyEng-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/app.war
 
-COPY .mvn .mvn
-COPY mvnw ./
-COPY pom.xml ./
-COPY src/ src
-
-#RUN ./mvnw clean package spring-boot:repackage
-RUN ./mvnw clean install
-
-FROM eclipse-temurin:19-jre-alpine
-WORKDIR /skyeng
-
-EXPOSE 9999
-ENTRYPOINT ["java", "-war", "/app/app.war"]
+CMD ["catalina.sh","run"]
