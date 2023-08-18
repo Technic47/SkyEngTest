@@ -28,8 +28,9 @@ public class TrackController extends CommonController<Track, TrackService> {
     }
 
     @GetMapping("/path/{id}")
-    public Track checkCurrentOffice(@PathVariable Long id) {
-        return service.getByIdOrNull(id);
+    public PostOffice checkCurrentOffice(@PathVariable Long id) {
+        Track findTrack = service.getByIdOrNull(id);
+        return findTrack.getCurrentOffice();
     }
 
     @PutMapping("/path/{id}")
