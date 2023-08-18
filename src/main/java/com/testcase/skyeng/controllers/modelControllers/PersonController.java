@@ -21,7 +21,7 @@ public class PersonController extends CommonController<Person, PersonService> {
     @PostMapping("/{personId}/addAddress/{addressId}")
     public Person addAddressById(@PathVariable Long personId,
                              @PathVariable Long addressId){
-        Address addressToAdd = addressService.getBuIdOrNull(addressId);
+        Address addressToAdd = addressService.getByIdOrNull(addressId);
         return service.addAddress(personId, addressToAdd);
     }
 

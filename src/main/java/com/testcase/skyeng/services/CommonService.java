@@ -21,7 +21,7 @@ public abstract class CommonService<T extends CommonEntity, R extends CommonRepo
         return repository.save(item);
     }
 
-    public T getBuIdOrNull(Long id) {
+    public T getByIdOrNull(Long id) {
         Optional<T> item = repository.findById(id);
         return item.orElse(null);
     }

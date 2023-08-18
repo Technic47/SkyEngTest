@@ -2,7 +2,6 @@ package com.testcase.skyeng.controllers;
 
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.services.CommonInterface;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public abstract class CommonController<T extends CommonEntity,
 
     @GetMapping("/{id}")
     public T getById(@PathVariable Long id) {
-        return service.getBuIdOrNull(id);
+        return service.getByIdOrNull(id);
     }
 
     @PutMapping("/{id}")
