@@ -30,6 +30,15 @@ public class Address extends CommonEntity {
     public Address() {
     }
 
+    public Address(Long id, String country, String city, String addressLine1, String addressLine2, int index) {
+        this.id = id;
+        this.country = country;
+        this.city = city;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.index = index;
+    }
+
     @Override
     public <T> void copy(T item) {
         Address newItem = (Address) item;

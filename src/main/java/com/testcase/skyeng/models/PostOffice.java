@@ -31,13 +31,11 @@ public class PostOffice extends CommonEntity {
     public PostOffice() {
     }
 
-    public PostOffice(int index, Address address) {
+    public PostOffice(Long id, String name, int index, Address address) {
+        this.id = id;
+        this.name = name;
         this.index = index;
         this.address = address;
-    }
-
-    public PostOffice(Address address) {
-        this(address.getIndex(), address);
     }
 
     public Long getId() {
@@ -70,6 +68,7 @@ public class PostOffice extends CommonEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+        this.index = address.getIndex();
     }
 
     @Override

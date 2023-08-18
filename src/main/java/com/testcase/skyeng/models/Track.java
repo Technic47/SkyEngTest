@@ -20,6 +20,10 @@ public class Track extends CommonEntity {
     private int currentState;
     private boolean arrived;
 
+    public Track() {
+        this(null, null, new ArrayList<>());
+    }
+
     public Track(MailPackage mailPackage) {
         this.mailPackage = mailPackage;
         this.path = new ArrayList<>();
@@ -27,8 +31,19 @@ public class Track extends CommonEntity {
         this.arrived = false;
     }
 
-    public Track() {
-        this(null);
+    public Track(Long id, MailPackage mailPackage, List<PostOffice> path) {
+        this.id = id;
+        this.mailPackage = mailPackage;
+        this.path = path;
+        this.currentState = 0;
+        this.arrived = false;
+    }
+
+    public Track(MailPackage mailPackage, List<PostOffice> path) {
+        this.mailPackage = mailPackage;
+        this.path = path;
+        this.currentState = 0;
+        this.arrived = false;
     }
 
     @Override

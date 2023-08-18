@@ -36,15 +36,12 @@ public class MailPackage extends CommonEntity {
 
     public MailPackage(){}
 
-    public MailPackage(PackageType type, int receiverIndex, Address receiverAddress, Person receiver) {
+    public MailPackage(Long id, PackageType type, int receiverIndex, Address receiverAddress, Person receiver) {
+        this.id = id;
         this.type = type;
         this.receiverIndex = receiverIndex;
         this.receiverAddress = receiverAddress;
         this.receiver = receiver;
-    }
-
-    public MailPackage(PackageType type, Address receiverAddress, Person receiver) {
-        this(type, receiverAddress.getIndex(), receiverAddress, receiver);
     }
 
     public Long getId() {
@@ -77,6 +74,7 @@ public class MailPackage extends CommonEntity {
 
     public void setReceiverAddress(Address receiverAddress) {
         this.receiverAddress = receiverAddress;
+        this.receiverIndex = receiverAddress.getIndex();
     }
 
     public Person getReceiver() {

@@ -28,9 +28,18 @@ public class Person extends CommonEntity {
     public Person() {
     }
 
+    public Person(Long id, Long passportNumber, String firstName, String secondName, Address address) {
+        this.id = id;
+        this.passportNumber = passportNumber;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.address = address;
+    }
+
     @Override
     public <T> void copy(T item) {
         Person newItem = (Person) item;
+        this.passportNumber = newItem.getPassportNumber();
         this.firstName = newItem.getFirstName();
         this.secondName = newItem.getSecondName();
         this.address = newItem.getAddress();
