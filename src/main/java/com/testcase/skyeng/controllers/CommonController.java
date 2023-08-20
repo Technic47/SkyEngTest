@@ -2,7 +2,9 @@ package com.testcase.skyeng.controllers;
 
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.services.CommonInterface;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,10 +26,13 @@ public abstract class CommonController<T extends CommonEntity,
         return service.saveItem(newItem);
     }
 
-
     @GetMapping("/{id}")
     public T getById(@PathVariable Long id) {
-        return service.getByIdOrNull(id);
+        T item = service.getByIdOrNull(id);
+        if (item == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
+        }
+        return item;
     }
 
     @PutMapping("/{id}")

@@ -1,0 +1,5 @@
+TRUNCATE "SkyEngTest".public.person RESTART IDENTITY CASCADE;
+TRUNCATE "SkyEngTest".public.address RESTART IDENTITY CASCADE;
+TRUNCATE "SkyEngTest".public.track RESTART IDENTITY CASCADE;
+TRUNCATE "SkyEngTest".public.mail_package RESTART IDENTITY CASCADE;
+TRUNCATE "SkyEngTest".public.post_office RESTART IDENTITY CASCADE;
