@@ -1,5 +1,7 @@
 package com.testcase.skyeng.services.modelServices;
 
+import com.testcase.skyeng.exceptions.ResourceNotFoundException;
+import com.testcase.skyeng.models.MailPackage;
 import com.testcase.skyeng.models.PostOffice;
 import com.testcase.skyeng.models.Track;
 import com.testcase.skyeng.repositories.TrackRepository;
@@ -7,14 +9,34 @@ import com.testcase.skyeng.services.CommonService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrackService extends CommonService<Track, TrackRepository> {
     private final PostOfficeService postOfficeService;
+    private final MailPackageService mailPackageService;
 
-    public TrackService(TrackRepository repository, PostOfficeService postOfficeService) {
+    public TrackService(TrackRepository repository, PostOfficeService postOfficeService, MailPackageService mailPackageService) {
         super(repository);
         this.postOfficeService = postOfficeService;
+        this.mailPackageService = mailPackageService;
+    }
+
+    public Track addPackage(Long trackId, Long packageId) throws ResourceNotFoundException {
+        Optional<Track> findTrack = repository.findById(trackId);
+        MailPackage mailPackage = mailPackageService.getById(packageId);
+        if (findTrack.isPresent()) {
+            Track track = findTrack.get();
+            track.setMailPackage(mailPackage);
+            return repository.save(track);
+        } else throw new ResourceNotFoundException("Item is not found with id: " + trackId);
+    }
+
+    public Track addStartOffice(Long trackId, Long officeId) {
+        PostOffice officeToAdd = postOfficeService.getById(officeId);
+        Track track = this.getById(trackId);
+        track.setFirstOffice(officeToAdd);
+        return repository.save(track);
     }
 
     /**
@@ -56,9 +78,13 @@ public class TrackService extends CommonService<Track, TrackRepository> {
      */
     public Track addOfficeFrom(Long track, Long from, Long office) {
         Track trackToWork = this.getById(track);
-        PostOffice officeFrom = postOfficeService.getById(from);
         PostOffice officeToAdd = postOfficeService.getById(office);
-        trackToWork.addPostOfficeAfter(officeFrom, officeToAdd);
+        if (trackToWork.getPath().size() == 0) {
+            trackToWork.setFirstOffice(officeToAdd);
+        } else {
+            PostOffice officeFrom = postOfficeService.getById(from);
+            trackToWork.addPostOfficeAfter(officeFrom, officeToAdd);
+        }
         return repository.save(trackToWork);
     }
 

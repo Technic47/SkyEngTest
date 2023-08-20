@@ -14,7 +14,7 @@ public class Track extends CommonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private final MailPackage mailPackage;
+    private MailPackage mailPackage;
     @ManyToMany
     private final List<PostOffice> path;
     private int currentState;
@@ -51,6 +51,10 @@ public class Track extends CommonEntity {
         //not implemented;
     }
 
+    public void setFirstOffice(PostOffice office){
+        this.path.add(0, office);
+    }
+
     /**
      * Add single PostOffice to distinct position in path.
      *
@@ -80,7 +84,9 @@ public class Track extends CommonEntity {
      * @return PostOffice where package is now.
      */
     public PostOffice getCurrentOffice() {
-        return path.get(currentState);
+        if (path.size() != 0) {
+            return path.get(currentState);
+        } else return null;
     }
 
     /**
@@ -89,10 +95,10 @@ public class Track extends CommonEntity {
     public void moveToNextStep() {
         int allSteps = path.size();
         currentState++;
-        if (currentState == allSteps - 1) {
+        if (currentState == allSteps) {
             arrived = true;
         }
-        if (currentState >= allSteps) {
+        if (currentState > allSteps) {
             throw new RuntimeException("Error in steps count!");
         }
     }
@@ -107,6 +113,10 @@ public class Track extends CommonEntity {
 
     public MailPackage getMailPackage() {
         return mailPackage;
+    }
+
+    public void setMailPackage(MailPackage mailPackage) {
+        this.mailPackage = mailPackage;
     }
 
     public List<PostOffice> getPath() {

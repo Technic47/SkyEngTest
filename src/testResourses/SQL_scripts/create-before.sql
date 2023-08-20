@@ -13,3 +13,9 @@ VALUES (DEFAULT, 152055, 'main VAO', null),
        (DEFAULT, 155869, 'Ivanovo post', null),
        (DEFAULT, 199550, 'main Perm', null),
        (DEFAULT, 123550, 'ChicCherick', null);
+
+INSERT INTO "SkyEngTest".public.mail_package(id, receiver_index, type, receiver_id, receiver_addr_id)
+VALUES (DEFAULT, 123456, 'MAIL', 1, 1);
+
+INSERT INTO "SkyEngTest".public.track(id, arrived, current_state)
+VALUES (DEFAULT, false, 0);

@@ -5,7 +5,9 @@ import com.testcase.skyeng.models.Address;
 import com.testcase.skyeng.models.Person;
 import com.testcase.skyeng.services.modelServices.AddressService;
 import com.testcase.skyeng.services.modelServices.PersonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/persons")
@@ -21,8 +23,13 @@ public class PersonController extends CommonController<Person, PersonService> {
     @PostMapping("/{personId}/addAddress/{addressId}")
     public Person addAddressById(@PathVariable Long personId,
                              @PathVariable Long addressId){
-        Address addressToAdd = addressService.getById(addressId);
-        return service.addAddress(personId, addressToAdd);
+        try {
+            Address addressToAdd = addressService.getById(addressId);
+            return service.addAddress(personId, addressToAdd);
+        } catch(Exception e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
     }
 
     @Override

@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +27,66 @@ class TrackServiceTest {
     private TrackRepository repository;
     @MockBean
     private PostOfficeService postOfficeService;
+    @MockBean
+    private MailPackageService mailPackageService;
     private MailPackage mailPackage;
 
     @BeforeEach
     void setUp() {
-        service = new TrackService(repository, postOfficeService);
+        service = new TrackService(repository, postOfficeService, mailPackageService);
         mailPackage = new MailPackage(TEST_ID, PackageType.MAIL, TEST_ADDRESS.getIndex(), TEST_ADDRESS, TEST_PERSON);
+    }
+
+    @Test
+    void addPackage() {
+        Track track = new Track();
+        track.setId(TEST_ID);
+
+        doReturn(Optional.of(track))
+                .when(repository)
+                .findById(TEST_ID);
+
+        doReturn(TEST_MAILPACKAGE)
+                .when(mailPackageService)
+                .getById(11L);
+
+        doReturn(track)
+                .when(repository)
+                .save(any(Track.class));
+
+        Track findTrack = service.addPackage(TEST_ID, 11L);
+
+        verify(repository).findById(TEST_ID);
+        verify(mailPackageService).getById(11L);
+        verify(repository).save(any(Track.class));
+
+        assertEquals(TEST_MAILPACKAGE, findTrack.getMailPackage());
+    }
+
+    @Test
+    void addStartOffice() {
+        Track track = new Track();
+        track.setId(TEST_ID);
+
+        doReturn(Optional.of(track))
+                .when(repository)
+                .findById(TEST_ID);
+
+        doReturn(TEST_POSTOFFICE)
+                .when(postOfficeService)
+                .getById(11L);
+
+        doReturn(track)
+                .when(repository)
+                .save(any(Track.class));
+
+        Track findTrack = service.addStartOffice(TEST_ID, 11L);
+
+        verify(repository).findById(TEST_ID);
+        verify(postOfficeService).getById(11L);
+        verify(repository).save(any(Track.class));
+
+        assertEquals(TEST_POSTOFFICE, findTrack.getPath().get(0));
     }
 
     @Test
