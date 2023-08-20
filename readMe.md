@@ -35,19 +35,19 @@
 
 **Почтовое отправление - MailPackage:**
 
-1.**Long id** - id записи.
-2.**PackageType type** - тип посылки.
-3.**int receiverIndex** - индекс получателя.
-4.**Address receiverAddress** - адрес получателя.
-5.**Person receiver - получатель.**
+1.**Long id** - id записи.  
+2.**PackageType type** - тип посылки.  
+3.**int receiverIndex** - индекс получателя.  
+4.**Address receiverAddress** - адрес получателя.  
+5.**Person receiver** - получатель.
 
 Трек - Track:
 
-1.**Long id** - id записи.
-2.**MailPackage mailPackage** - отправление, прикреплённое к треку.
-3.**List<PostOffice> path** - путь посылки.
-4.**int currentState** - текущая позиция на пути.
-5.**boolean arrived** - индикатор окончания пути.
+1.**Long id** - id записи.  
+2.**MailPackage mailPackage** - отправление, прикреплённое к треку.  
+3.**List<PostOffice> path** - путь посылки.  
+4.**int currentState** - текущая позиция на пути.  
+5.**boolean arrived** - индикатор окончания пути.  
 
 
 ## Описание API:
