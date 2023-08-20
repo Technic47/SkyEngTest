@@ -22,14 +22,14 @@ public class TrackController extends CommonController<Track, TrackService> {
 
     @PostMapping("/path/{id}")
     public Track nextStep(@PathVariable Long id) {
-        Track findTrack = service.getByIdOrNull(id);
+        Track findTrack = service.getById(id);
         findTrack.moveToNextStep();
         return service.saveItem(findTrack);
     }
 
     @GetMapping("/path/{id}")
     public PostOffice checkCurrentOffice(@PathVariable Long id) {
-        Track findTrack = service.getByIdOrNull(id);
+        Track findTrack = service.getById(id);
         return findTrack.getCurrentOffice();
     }
 

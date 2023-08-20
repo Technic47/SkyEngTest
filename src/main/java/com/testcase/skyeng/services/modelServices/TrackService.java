@@ -26,7 +26,7 @@ public class TrackService extends CommonService<Track, TrackRepository> {
      * @return changed Track
      */
     public Track addOfficeFrom(Long track, PostOffice from, List<PostOffice> officeList) {
-        Track trackToWork = this.getByIdOrNull(track);
+        Track trackToWork = this.getById(track);
         trackToWork.addPostOfficeAfter(from, officeList);
         return repository.save(trackToWork);
     }
@@ -40,7 +40,7 @@ public class TrackService extends CommonService<Track, TrackRepository> {
      * @return changed Track
      */
     public Track addOfficeFrom(Long track, PostOffice from, PostOffice office) {
-        Track trackToWork = this.getByIdOrNull(track);
+        Track trackToWork = this.getById(track);
         trackToWork.addPostOfficeAfter(from, office);
         return repository.save(trackToWork);
     }
@@ -55,9 +55,9 @@ public class TrackService extends CommonService<Track, TrackRepository> {
      * @return changed Track
      */
     public Track addOfficeFrom(Long track, Long from, Long office) {
-        Track trackToWork = this.getByIdOrNull(track);
-        PostOffice officeFrom = postOfficeService.getByIdOrNull(from);
-        PostOffice officeToAdd = postOfficeService.getByIdOrNull(office);
+        Track trackToWork = this.getById(track);
+        PostOffice officeFrom = postOfficeService.getById(from);
+        PostOffice officeToAdd = postOfficeService.getById(office);
         trackToWork.addPostOfficeAfter(officeFrom, officeToAdd);
         return repository.save(trackToWork);
     }
@@ -69,7 +69,7 @@ public class TrackService extends CommonService<Track, TrackRepository> {
      * @return arrive status
      */
     public boolean isArrived(Long track) {
-        Track trackToWork = this.getByIdOrNull(track);
+        Track trackToWork = this.getById(track);
         return trackToWork.isArrived();
     }
 }

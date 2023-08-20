@@ -78,6 +78,13 @@ class CommonControllerTest {
     }
 
     @Test
+    void getByIdWrong() throws Exception {
+        mockMvc.perform(get("/addresses/1111"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
     void updateItem() throws Exception {
         ObjectMapper om = new ObjectMapper();
         Address newAddress = new Address();
@@ -102,6 +109,7 @@ class CommonControllerTest {
                 .andExpect(jsonPath("[0].country", is("Russia")));
     }
 
+
     @Test
     void delById() throws Exception {
         mockMvc.perform(delete("/addresses/1"))
@@ -113,8 +121,6 @@ class CommonControllerTest {
     @Test
     void delByIdFalse() throws Exception {
         mockMvc.perform(delete("/addresses/1111"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
+                .andExpect(status().is4xxClientError());
     }
 }

@@ -1,5 +1,6 @@
 package com.testcase.skyeng.controllers;
 
+import com.testcase.skyeng.exceptions.ResourceNotFoundException;
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.services.CommonInterface;
 import org.springframework.http.HttpStatus;
@@ -28,11 +29,12 @@ public abstract class CommonController<T extends CommonEntity,
 
     @GetMapping("/{id}")
     public T getById(@PathVariable Long id) {
-        T item = service.getByIdOrNull(id);
-        if (item == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
+        try {
+            return service.getById(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
-        return item;
     }
 
     @PutMapping("/{id}")
@@ -42,6 +44,11 @@ public abstract class CommonController<T extends CommonEntity,
 
     @DeleteMapping("/{id}")
     public boolean delById(@PathVariable Long id) {
-        return service.delById(id);
+        try {
+            return service.delById(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.testcase.skyeng.services;
 
+import com.testcase.skyeng.exceptions.ResourceNotFoundException;
 import com.testcase.skyeng.models.additions.CommonEntity;
 import com.testcase.skyeng.repositories.CommonRepository;
 
@@ -27,9 +28,11 @@ public abstract class CommonService<T extends CommonEntity, R extends CommonRepo
      * @param id id to find.
      * @return entity if found or null if not.
      */
-    public T getByIdOrNull(Long id) {
+    public T getById(Long id) throws ResourceNotFoundException {
         Optional<T> item = repository.findById(id);
-        return item.orElse(null);
+        if (item.isEmpty()) {
+            throw new ResourceNotFoundException("Item is not found with id: " + id);
+        } else return item.get();
     }
 
     /**
@@ -55,11 +58,13 @@ public abstract class CommonService<T extends CommonEntity, R extends CommonRepo
      * @param id id to delete.
      * @return was entity deleted or not.
      */
-    public boolean delById(Long id) {
+    public boolean delById(Long id) throws ResourceNotFoundException {
         Optional<T> item = repository.findById(id);
         if (item.isPresent()) {
             repository.delete(item.get());
             return true;
-        } else return false;
+        } else {
+            throw new ResourceNotFoundException("Item is not found with id: " + id);
+        }
     }
 }

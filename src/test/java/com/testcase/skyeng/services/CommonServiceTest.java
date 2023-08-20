@@ -1,5 +1,6 @@
 package com.testcase.skyeng.services;
 
+import com.testcase.skyeng.exceptions.ResourceNotFoundException;
 import com.testcase.skyeng.models.Address;
 import com.testcase.skyeng.repositories.AddressRepository;
 import com.testcase.skyeng.services.modelServices.AddressService;
@@ -49,7 +50,7 @@ class CommonServiceTest {
                 .when(repository)
                 .findById(TEST_ID);
 
-        Address address = service.getByIdOrNull(TEST_ID);
+        Address address = service.getById(TEST_ID);
 
         verify(repository).findById(TEST_ID);
 
@@ -57,13 +58,12 @@ class CommonServiceTest {
     }
 
     @Test
-    void getByIdOrNullTestNull() {
+    void getByIdTestNull() {
         doReturn(Optional.empty())
                 .when(repository)
                 .findById(TEST_ID);
 
-        Address address = service.getByIdOrNull(TEST_ID);
-        assertNull(address);
+        assertThrows(ResourceNotFoundException.class, () -> service.getById(TEST_ID));
     }
 
     @Test
@@ -114,6 +114,6 @@ class CommonServiceTest {
                 .findById(1L);
 
         assertTrue(service.delById(1L));
-        assertFalse(service.delById(TEST_ID));
+        assertThrows(ResourceNotFoundException.class, () -> service.delById(TEST_ID));
     }
 }
