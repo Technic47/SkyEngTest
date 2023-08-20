@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "1a02826e-9c16-4c06-8127-603ee8566074",
+		"name": "SkyEng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25312518"
+	},
+	"item": [
+		{
+			"name": "Package index",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/mailpackages",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"mailpackages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person index",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "firstName",
+						"value": "Pavel",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "secondName",
+						"value": "Kuznetsov",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Ivan\",\r\n    \"secondName\": \"Kuznetsov\",\r\n    \"passportNumber\": 15251155852\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person add address",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/persons/4/addAddress/4",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"persons",
+						"4",
+						"addAddress",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address index",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "admin",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "admin",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:9090/addresses",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address get",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/addresses/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addresses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"Russia\",\r\n    \"city\": \"Moscow\",\r\n    \"index\": 107150,\r\n    \"addressLine1\": \"SomeStreet st.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/addresses",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address delete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/addresses/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addresses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mail package create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"mail\",\r\n    \"receiverAddress\": {\r\n        \"country\": \"Russia\",\r\n        \"city\": \"Ivanovo\",\r\n        \"addressLine1\": \"BigStreet st.\",\r\n        \"index\": 107880\r\n    },\r\n    \"receiver\": {\r\n        \"firstName\": \"Andrey\",\r\n        \"secondName\": \"Petrov\",\r\n        \"passportNumber\": 25559484342\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/mailpackages",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"mailpackages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post offices index",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/postoffices",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"postoffices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post office create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ivanovo main\",\r\n    \"index\": 107880,\r\n    \"address\": {\r\n        \"country\": \"Russia\",\r\n        \"city\": \"Ivanovo\",\r\n        \"addressLine1\": \"BigStreet st.\",\r\n        \"index\": 107880\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/postoffices",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"postoffices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tracks index",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Track create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mailPackage\": {\r\n        \"id\": 1,\r\n        \"receiverIndex\": 107880,\r\n        \"receiverAddress\": {\r\n            \"id\": 5,\r\n            \"country\": \"Russia\",\r\n            \"city\": \"Ivanovo\",\r\n            \"addressLine1\": \"BigStreet st.\",\r\n            \"addressLine2\": null,\r\n            \"index\": 107880\r\n        }\r\n    },\r\n    \"path\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"VAO local\",\r\n            \"index\": 107150,\r\n            \"address\": {\r\n                \"id\": 5,\r\n                \"country\": \"Russia\",\r\n                \"city\": \"Ivanovo\",\r\n                \"addressLine1\": \"BigStreet st.\",\r\n                \"addressLine2\": null,\r\n                \"index\": 107880\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/tracks",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/tracks/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tracks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track get current office",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/tracks/path/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tracks",
+						"path",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track add office to path",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "officeFromId",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "officeId",
+						"value": "2",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"VAO local\",\r\n        \"index\": 107150,\r\n        \"address\": {\r\n            \"id\": 5,\r\n            \"country\": \"Russia\",\r\n            \"city\": \"Ivanovo\",\r\n            \"addressLine1\": \"BigStreet st.\",\r\n            \"addressLine2\": null,\r\n            \"index\": 107880\r\n        }\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"name\": \"Ivanovo main\",\r\n        \"index\": 107880,\r\n        \"address\": {\r\n            \"id\": 5,\r\n            \"country\": \"Russia\",\r\n            \"city\": \"Ivanovo\",\r\n            \"addressLine1\": \"BigStreet st.\",\r\n            \"addressLine2\": null,\r\n            \"index\": 107880\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/tracks/path/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tracks",
+						"path",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track move to next step",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/tracks/path/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tracks",
+						"path",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track create",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
